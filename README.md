@@ -12,4 +12,4 @@ Sets your Discord Status to what you are currently playing on LastFM
     ```
     python -m pip install -r requirements.txt 
     ```
- * Run discordfm.py (double click on Windows)
+ * Windows: run `run.bat`
