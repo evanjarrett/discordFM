@@ -15,11 +15,11 @@ class DiscordFM(Bot):
     _current_track = ""
 
     def __init__(self, conf,
-            command_prefix=commands.when_mentioned_or("#!"),
-            formatter=None,
-            name="DiscordFM",
-            description="""Does music""",
-            pm_help=False, **options):
+                 command_prefix=commands.when_mentioned_or("#!"),
+                 formatter=None,
+                 name="DiscordFM",
+                 description="""Does music""",
+                 pm_help=False, **options):
         super().__init__(command_prefix, formatter, description, pm_help, **options)
 
         self.config = conf
@@ -61,7 +61,7 @@ class DiscordFM(Bot):
 
     async def close(self):
         print("Closing client...")
-        await self.change_presence(game=discord.Game(name="Notification Bot"))
+        await self.change_presence(game=discord.Game(name=""))
         await super().close()
 
     @staticmethod
