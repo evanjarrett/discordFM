@@ -73,4 +73,7 @@ config = configparser.RawConfigParser()
 config_file = os.path.dirname(os.path.realpath(__file__)) + "/config.ini"
 config.read(config_file)
 
-DiscordFM(config).run(config["Discord"]["user"], config["Discord"]["pass"])
+if config["Discord"]["token"] is not None and "XXXXX" not in config["Discord"]["token"]:
+    DiscordFM(config).run(config["Discord"]["token"], bot=False)
+else:
+    DiscordFM(config).run(config["Discord"]["user"], config["Discord"]["pass"])
