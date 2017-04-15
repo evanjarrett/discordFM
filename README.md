@@ -1,9 +1,9 @@
-#DiscordFM
+# DiscordFM
 
 Sets your Discord Status to what you are currently playing on LastFM
 
 
-###basic setup:
+### basic setup:
 
 
  * Edit `config.ini` and replace XXX with your information
