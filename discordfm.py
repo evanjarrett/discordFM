@@ -36,8 +36,7 @@ class DiscordFM(Bot):
         print("------------------------------------------------------------------------------------------------------")
 
         lastfm = pylast.LastFMNetwork(
-            api_key=config["LastFM"]["apikey"],
-            api_secret=config["LastFM"]["secret"]
+            api_key=config["LastFM"]["apikey"]
         )
 
         await self.change_presence(game=discord.Game(name="DiscordFM"))
@@ -61,7 +60,7 @@ class DiscordFM(Bot):
 
     async def close(self):
         print("Closing client...")
-        await self.change_presence(game=discord.Game(name=""))
+        await self.change_presence(game=None)
         await super().close()
 
     @staticmethod
