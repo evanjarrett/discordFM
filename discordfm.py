@@ -38,10 +38,10 @@ class DiscordFM(Bot):
         apikey = config.get("LastFM", "apikey", fallback=None)
         user = config.get("LastFM", "user", fallback=None)
 
-        if apikey is None:
+        if not apikey:
             print("Error: Non LastFM API Key specified")
 
-        if user is None:
+        if not user:
             print("Error: Non LastFM user specified")
 
         lastfm = pylast.LastFMNetwork(
@@ -88,10 +88,10 @@ if not config.has_section("Discord") or not config.has_section("LastFM"):
 
 token = config.get("Discord", "token", fallback=None)
 
-if token is None or "XXXXX" in token:
+if not token or "XXXXX" in token:
     username = config.get("Discord", "user", fallback=None)
     password = config.get("Discord", "pass", fallback=None)
-    if username is None or password is None:
+    if not username or not password:
         print("Error: You need to specify a token, or username and password")
         quit()
 
