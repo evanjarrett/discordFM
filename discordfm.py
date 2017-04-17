@@ -1,39 +1,31 @@
+import asyncio
 import configparser
 import os
 import signal
 import sys
-from pprint import pprint
 
-import asyncio
 import discord
 import pylast
-from discord.ext import commands
-from discord.ext.commands import Bot
+from discord import Client
 
 
-class DiscordFM(Bot):
+class DiscordFM(Client):
     _current_track = ""
 
-    def __init__(self, conf,
-                 command_prefix=commands.when_mentioned_or("#!"),
-                 formatter=None,
-                 name="DiscordFM",
-                 description="""Sets your status to what's playing on LastFM""",
-                 pm_help=False, **options):
-        super().__init__(command_prefix, formatter, description, pm_help, **options)
+    def __init__(self, conf, **options):
+        super().__init__(**options)
 
         self.config = conf
-        self.name = name
 
         if not sys.platform.startswith('win'):  # pragma: no cover
             self.loop.add_signal_handler(getattr(signal, "SIGTERM"), self.exit)
 
     async def on_ready(self):
-        print("-"*48)
+        print("-" * 48)
         print("Logged in as")
         print(self.user.name)
         print(self.user.id)
-        print("-"*48)
+        print("-" * 48)
 
         apikey = config.get("LastFM", "apikey", fallback=None)
         user = config.get("LastFM", "user", fallback=None)
@@ -63,9 +55,6 @@ class DiscordFM(Bot):
             self._current_track = new_track
             print("Now playing: {}".format(self._current_track))
             await self.change_presence(game=discord.Game(name="{}".format(self._current_track)))
-
-    async def on_command_error(self, exception, ctx):
-        pprint(exception)
 
     async def close(self):
         print("Closing client...")
