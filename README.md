@@ -23,7 +23,7 @@ Eventually the `run.bat` won't be necessary, but it fixes errors when using non-
  * Windows running earlier than python 3.6: Run `run.bat` file.
    * Prior to 3.6, the console would cause and error when trying to print non-english characters
  
- * Linx & Mac: `python3 discordFM.py`
+ * Linux & Mac run from the commandline: `python3 discordFM.py`
 
 
 ### FAQ
