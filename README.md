@@ -21,14 +21,16 @@ Eventually the `run.bat` won't be necessary, but it fixes errors when using non-
     python -m pip install -r requirements.txt 
     ```
  * Windows running earlier than python 3.6: Run `run.bat` file.
-   * Prior to 3.6, the console would cause and error when trying to print non-english characters
+   * Prior to 3.6, the console would cause an error when trying to print non-english characters.
  
  * Linux & Mac run from the commandline: `python3 discordFM.py`
 
-
-### FAQ
+### FAQ:
 
  * The console is printing gibberish. What gives?
    * Blame Windows, it doesn't like UTF-8 chars. Discord should still show them correctly.
  * How come I can't see what song I'm playing on Discord?
    * Blame Discord, for some reason you can't view it yourself. Get a friend to help test.
+
+ 
+###### Shoutout to @noname on discord for giving me the idea and for helping me test things.
