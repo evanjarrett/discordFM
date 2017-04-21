@@ -35,9 +35,13 @@ class DiscordFM(Client):
         self.status = Status[str_status]
 
         while True:
-            current_track = lastfm_user.get_now_playing()
-            await self.set_now_playing(current_track, self.status)
-            await asyncio.sleep(5)
+            try:
+                current_track = lastfm_user.get_now_playing()
+                await self.set_now_playing(current_track, self.status)
+                await asyncio.sleep(5)
+            except pylast.WSError as e:
+                print("Error: " + e.details)
+                self.exit()
 
     async def set_now_playing(self, track: Track, status: Status):
         if track is None:
@@ -58,7 +62,7 @@ class DiscordFM(Client):
         await self.change_presence(game=discord.Game(name=song), status=status)
 
     async def close(self):
-        print("Closing client...")
+        print("Closing...")
         await self.now_playing(None, status=self.status)
         await super().close()
 
@@ -67,14 +71,17 @@ class DiscordFM(Client):
         user = self.config.get("LastFM", "user", fallback=None)
 
         if not apikey:
-            print("Error: Non LastFM API Key specified")
+            print("Error: No LastFM API Key specified")
+            return
 
         if not user:
-            print("Error: Non LastFM user specified")
+            print("Error: No LastFM user specified")
+            return
 
         lastfm = pylast.LastFMNetwork(
             api_key=apikey
         )
+
         return lastfm.get_user(user)
 
     @staticmethod
