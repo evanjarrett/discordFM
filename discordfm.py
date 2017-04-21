@@ -89,24 +89,24 @@ class DiscordFM(Client):
         # This gets handled in the run() method
         raise KeyboardInterrupt
 
+if __name__ == "__main__":
+    config = configparser.RawConfigParser()
+    config_file = os.path.dirname(os.path.realpath(__file__)) + "/config.ini"
+    config.read(config_file)
 
-config = configparser.RawConfigParser()
-config_file = os.path.dirname(os.path.realpath(__file__)) + "/config.ini"
-config.read(config_file)
-
-if not config.has_section("Discord") or not config.has_section("LastFM"):
-    print("Error: Config file is invalid.")
-    quit()
-
-token = config.get("Discord", "token", fallback=None)
-
-if not token or "XXXXX" in token:
-    username = config.get("Discord", "user", fallback=None)
-    password = config.get("Discord", "pass", fallback=None)
-    if not username or not password:
-        print("Error: You need to specify a token, or username and password")
+    if not config.has_section("Discord") or not config.has_section("LastFM"):
+        print("Error: Config file is invalid.")
         quit()
 
-    DiscordFM(config).run(username, password)
-else:
-    DiscordFM(config).run(token, bot=False)
+    token = config.get("Discord", "token", fallback=None)
+
+    if not token or "XXXXX" in token:
+        username = config.get("Discord", "user", fallback=None)
+        password = config.get("Discord", "pass", fallback=None)
+        if not username or not password:
+            print("Error: You need to specify a token, or username and password")
+            quit()
+
+        DiscordFM(config).run(username, password)
+    else:
+        DiscordFM(config).run(token, bot=False)
