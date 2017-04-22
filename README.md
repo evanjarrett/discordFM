@@ -1,16 +1,21 @@
 # DiscordFM
 
-Sets your Discord Status to what you are currently playing on LastFM
+Sets your Discord Status to what you are currently playing on LastFM.
 
-### Windows Users:
 
-I now have a single executable version under [releases](https://github.com/00firestar00/discordFM/releases)
+### Basic Setup For Windows:
+ * Download the latest version under [releases](https://github.com/00firestar00/discordFM/releases)
 
-This does not require python to be installed in order to use. Just unzip, edit the config, and use the `run.bat` file.
+ * Edit `config.ini` and replace XXX with your information
+   * You can either use your username and password OR your localStorage.token
+   * Go [here](https://www.last.fm/api/account/create) to get your lastFM API key
 
-Eventually the `run.bat` won't be necessary, but it fixes errors when using non-english characters.
+ * Double click `run.bat`. If you use the .exe, it will break when trying to play non-english song titles.
 
-### Basic Setup:
+
+### Basic Setup For Linux & Mac:
+
+ * Install Python 3.5 or higher
 
  * Edit `config.ini` and replace XXX with your information
    * You can either use your username and password OR your localStorage.token
@@ -18,12 +23,12 @@ Eventually the `run.bat` won't be necessary, but it fixes errors when using non-
 
  * Open the command prompt and type:
     ```
-    python -m pip install -r requirements.txt 
+    python3 -m pip install -r requirements.txt 
     ```
- * Windows running earlier than python 3.6: Run `run.bat` file.
-   * Prior to 3.6, the console would cause an error when trying to print non-english characters.
- 
- * Linux & Mac run from the commandline: `python3 discordFM.py`
+ * To Run:
+    ```
+    python3 discordFM.py
+    ```
 
 ### FAQ:
 
