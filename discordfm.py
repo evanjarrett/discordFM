@@ -6,8 +6,8 @@ import sys
 
 import discord
 import pylast
-from pylast import Track
 from discord import Client, Status
+from pylast import Track
 
 
 class DiscordFM(Client):
@@ -54,7 +54,7 @@ class DiscordFM(Client):
             print("Now playing: {}".format(self._current_track))
             await self.now_playing(self._current_track, status)
 
-    async def now_playing(self, song: str=None, status: Status=Status.online):
+    async def now_playing(self, song: str = None, status: Status = Status.online):
         if song is None:
             await self.change_presence(game=None)
             return
@@ -88,6 +88,7 @@ class DiscordFM(Client):
     def exit():
         # This gets handled in the run() method
         raise KeyboardInterrupt
+
 
 if __name__ == "__main__":
     config = configparser.RawConfigParser()
