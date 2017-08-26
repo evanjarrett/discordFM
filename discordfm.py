@@ -48,7 +48,12 @@ class DiscordFM(Client):
             await self.now_playing("DiscordFM", status)
             return
 
-        new_track = "{} - {}".format(track.get_artist().get_name(), track.get_name())
+        str_format = self.config.get("Options", "format", fallback="{artist} - {song}")
+
+        new_track = str_format.format(artist=track.get_artist().get_name(),
+                                      song=track.get_name(),
+                                      album={track.get_album().get_title()})
+
         if new_track != self._current_track:
             self._current_track = new_track
             print("Now playing: {}".format(self._current_track))
