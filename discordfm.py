@@ -51,8 +51,7 @@ class DiscordFM(Client):
         str_format = self.config.get("Options", "format", fallback="{artist} - {song}")
 
         new_track = str_format.format(artist=track.get_artist().get_name(),
-                                      song=track.get_name(),
-                                      album={track.get_album().get_title()})
+                                      song=track.get_name())
 
         if new_track != self._current_track:
             self._current_track = new_track
